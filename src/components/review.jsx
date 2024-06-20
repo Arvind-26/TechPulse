@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 
-const review = ({data_get}) => {
+const Review = ({data_get}) => {
   let router = useRouter()
   const product_id = router.query
   const { sharedValues } = useContext(AppContext);
@@ -54,5 +54,5 @@ const review = ({data_get}) => {
   )
 }
 
-export default review
+export default Review
 

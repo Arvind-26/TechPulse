@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
-const footer = () => {
+const Footer = () => {
     const { sharedValues } = useContext(AppContext);
     return (
         <footer className="p-4 grid grid-rows-auto md:grid-rows-1 grid-cols-1 md:grid-cols-3 bottom-0 bg-slate-950 text-white">
@@ -44,4 +44,4 @@ const footer = () => {
     )
 }
 
-export default footer
+export default Footer

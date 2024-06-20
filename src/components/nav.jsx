@@ -10,7 +10,7 @@ function expand() {
     document.getElementById("menu").classList.toggle("hidden")
 }
 
-const nav = () => {
+const Nav = () => {
     const { sharedValues } = useContext(AppContext);
 
     return (
@@ -48,4 +48,4 @@ const nav = () => {
     )
 }
 
-export default nav
+export default Nav
