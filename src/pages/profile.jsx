@@ -3,12 +3,14 @@ import mongoose from "mongoose"
 import up from "../models/up"
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import Head from 'next/head';
 
 
-function logout(){
-    localStorage.removeItem("sharedValues")
-    window.location.replace('/')
+function logout() {
+  localStorage.removeItem("sharedValues")
+  window.location.replace('/')
 }
+
 
 const profile = ({ users }) => {
   const { sharedValues } = useContext(AppContext);
@@ -24,7 +26,24 @@ const profile = ({ users }) => {
       add = element.address
     }
   });
-  return (
+
+
+  async function delete_acc() {
+    await fetch("http://localhost:3000/api/addup", {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ "user": sharedValues.value2 })
+    })
+    localStorage.removeItem("sharedValues")
+    window.location.replace('/signup')
+  }
+
+  return (<>
+    <Head>
+      <title>Profile</title>
+    </Head>
     <main className="flex flex-col md:py-16 px-10 md:px-24 items-start w-auto m-8 md:my-14 md:mx-60 rounded-xl border-2 border-[#d30a03] gap-6">
       <label className=" text-[#d30a03] text-4xl font-bold m-5">Profile</label>
       <div className='md:px-8 flex flex-col w-full gap-6'>
@@ -46,7 +65,8 @@ const profile = ({ users }) => {
         </span>
       </div>
       <button className=" text-white md:font-bold bg-[#d30a03] rounded-2xl py-1 px-5 text-xl md:mt-4" onClick={logout}>Log Out</button>
-    </main>
+      <button className=" text-white md:font-bold bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mb-2 md:mt-2" onClick={delete_acc}>Delete Account</button>
+    </main></>
   )
 }
 

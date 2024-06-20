@@ -5,6 +5,7 @@ import { withRouter } from 'next/router';
 import React, { useEffect } from 'react'
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import Head from 'next/head';
 
 
 const signup = ({ users, router }) => {
@@ -61,7 +62,10 @@ const signup = ({ users, router }) => {
     }
   }
 
-  return (
+  return (<>
+    <Head>
+        <title>Signup</title>
+      </Head>
     <main className="flex flex-col md:py-16 px-10 md:px-24 items-start w-auto m-8 md:my-14 md:mx-60 rounded-xl border-2 border-[#d30a03] gap-6">
       <label className=" text-[#d30a03] text-4xl font-bold m-5">Signup</label>
       <div className='md:px-8 flex flex-col w-full gap-6'>
@@ -99,7 +103,7 @@ const signup = ({ users, router }) => {
       <label htmlFor="" id='exists' className=' hidden text-red-900 text-xl'>! This username already exists</label>
       <button className=" text-white font-bold bg-[#d30a03] rounded-2xl py-1 px-5 text-xl m-4" onClick={() => get({ users, router })}>Signup</button>
       <label className='text-xl my-4 mx-auto'>Already have an account? <Link className='text-[#d30a03]' href={"/login"}>Login</Link></label>
-    </main>
+    </main></>
   )
 }
 

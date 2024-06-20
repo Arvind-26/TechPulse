@@ -5,6 +5,7 @@ import up from '../models/up'
 import { withRouter } from 'next/router';
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import Head from 'next/head';
 
 
 const login = ({ users, passwords, router }) => {
@@ -27,7 +28,10 @@ const login = ({ users, passwords, router }) => {
       }
     }
   }
-  return (
+  return (<>
+    <Head>
+      <title>login</title>
+    </Head>
     <main className="flex flex-col md:flex-row w-auto justify-center m-8 md:m-14">
       <div className="  text-[#d30a03] flex flex-col items-center border-2 border-[#d30a03] py-16 px-24 rounded-t-xl md:rounded-t-none md:rounded-l-xl">
         <label className=" text-4xl font-bold m-10">Login</label>
@@ -49,7 +53,7 @@ const login = ({ users, passwords, router }) => {
           <button className=" text-white font-bold border-2 border-white rounded-2xl py-1 px-5 text-xl m-4">Register</button>
         </Link>
       </div>
-    </main>
+    </main></>
   )
 }
 

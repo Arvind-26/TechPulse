@@ -19,7 +19,7 @@ const review = ({data_get}) => {
         ]
       }
     ]
-    await fetch('http://localhost:3000/api/addproducts', {
+    await fetch('http://localhost:3000/api/addreviews', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -55,10 +55,3 @@ const review = ({data_get}) => {
 
 export default review
 
-export async function getServerSideProps(context) {
-  // const res = await fetch(`http://localhost:3000/api/getproducts`);
-  // const data_get = await res.json();
-  // return {
-  //   props: { data_get }
-  // }
-}

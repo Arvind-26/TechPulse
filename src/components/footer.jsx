@@ -28,16 +28,15 @@ const footer = () => {
                 <label htmlFor="" className="text-[#d30a03] text-2xl font-bold">Direct Links</label>
                 <ul className="p-2">
                     <Link href={"/"}><li className='hover:text-[#d30a03]'>Home</li></Link>
-                    <li>Offers</li>
-                    <li>Products</li>
                     {sharedValues.value1 ?
-                        <Link href={"/profile"}><li className='hover:text-[#d30a03]'>Profile</li></Link> :
+                        <><Link href={"/profile"}><li className='hover:text-[#d30a03]'>Profile</li></Link>
+                            <Link href={"/addtocart"}><li className='hover:text-[#d30a03]'>Cart</li></Link></> :
                         <><Link href={"/login"}><li className='hover:text-[#d30a03]'>Login</li></Link>
                             <Link href={"/signup"}><li className='hover:text-[#d30a03]'>Signup</li></Link></>}
                 </ul>
             </div>
             <div className="md:border-l-2 md:border-t-0 border-t-2 border-white w-fill p-4">
-                <label className="text-[#d30a03] text-2xl font-bold">About</label><br />
+                <label id='about' className="text-[#d30a03] text-2xl font-bold">About</label><br />
                 <label>Welcome to InnovateTech, your premier destination for cutting-edge tech products. We pride ourselves on offering the latest innovations in technology, serving customers worldwide. With a commitment to quality and excellence, InnovateTech ensures you stay ahead in the fast-paced tech world. Discover the future with us today!</label>
             </div>
         </footer>
