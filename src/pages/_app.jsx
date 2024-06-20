@@ -1,6 +1,6 @@
 import Nav from '../components/Nav'
 import { AppProvider } from '../context/AppContext';
-import Foot from '../components/footer'
+import Foot from '../components/Footer'
 import React from 'react';
 
 function MyApp({ Component, pageProps }) {
