@@ -3,6 +3,7 @@ import AppContext from '../context/AppContext';
 import Image from 'next/image'
 import { useRouter } from "next/router"
 import Head from 'next/head';
+import React from 'react';
 
 const addtocart = ({ data }) => {
     let router = useRouter()

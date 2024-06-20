@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 import up from '../models/up'
 import { withRouter } from 'next/router';
 import { useContext } from 'react';
+import React from 'react';
 import AppContext from '../context/AppContext';
 import Head from 'next/head';
 

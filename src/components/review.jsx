@@ -1,5 +1,6 @@
 import Arrow from '../../public/Arrow.jpg'
 import { useRouter } from "next/router"
+import React from 'react';
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
@@ -44,7 +45,7 @@ const review = ({data_get}) => {
         <img src={Arrow.src} className=' h-7  absolute right-4 md:right-5 top-8' alt="" onClick={send} />
       </div>
       {obj.toReversed().map((item) => {
-      return <div className='self-start h-auto  max-w-96 md:max-w-fit border-2 shadow-xl p-2 my-4 rounded-md bg-white'>
+      return <div key={item._id} className='self-start h-auto  max-w-96 md:max-w-fit border-2 shadow-xl p-2 my-4 rounded-md bg-white'>
         <label className=' font-medium p-2'>{item.key}</label>
         <p className='self-start p-2 py-2 '>{item.value}</p>
       </div>

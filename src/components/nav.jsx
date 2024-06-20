@@ -1,4 +1,5 @@
 import 'tailwindcss/tailwind.css'
+import React from 'react';
 import img from '../../public/menu.png'
 import imgp from '../../public/profie.png'
 import Link from 'next/link'
