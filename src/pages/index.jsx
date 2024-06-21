@@ -6,7 +6,9 @@ import product from '../models/product'
 import offer from '../models/offer'
 import React, { useEffect } from 'react'
 
-function displayOffer(offers) {
+
+
+export default function Innovatetech({ products, offers }) {
   useEffect(() => {
     
     let i = 0
@@ -20,10 +22,6 @@ function displayOffer(offers) {
     }, 3000);
 
   }, []);
-}
-
-export default function innovatetech({ products, offers }) {
-  displayOffer(offers)
   return (
     <div>
       <Head>
