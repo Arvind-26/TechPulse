@@ -28,7 +28,9 @@ const Review = ({data_get}) => {
       },
       body: JSON.stringify(fulldata),
     })
-    window.location.reload()
+    await router.push({
+      pathname: '/detail',
+    });
   }
   let obj
   data_get.products.forEach(element => {
