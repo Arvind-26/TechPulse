@@ -5,5 +5,21 @@
 [dev]
   command = "npm run dev"
 
+[[redirects]]
+  from = "/old-path"
+  to = "/new-path"
+  status = 301
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+      Cache-Control = "public, max-age=3600"
+
+[context.production.environment]
+  API_KEY = "your_production_api_key"
+
+[context.deploy-preview.environment]
+  API_KEY = "your_preview_api_key"
+
 [functions]
   timeout = 30
