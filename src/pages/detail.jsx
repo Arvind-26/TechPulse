@@ -14,11 +14,18 @@ export default function Detail({ data }) {
   const { sharedValues } = useContext(AppContext);
   let obj;
   const product_id = router.query
-  data.products.forEach(element => {
-    if (element._id == product_id.id) {
-      obj = element
-    }
-  });
+  let img, name, price, desc
+
+  let data2 = data.products
+  data2.forEach(element => {
+      if (element._id == product_id.id) {
+          img = element.img
+          name = element.name
+          price = element.price
+          desc = element.desc
+
+      }
+  })
 
   async function senddata() {
     var fulldata = [
@@ -57,12 +64,12 @@ export default function Detail({ data }) {
     </div>
     <main className="flex flex-col md:flex-row md:py-10 p-10 md:px-10 w-auto m-8 md:my-14 md:mx-48 rounded-xl border-2 border-[#d30a03] gap-6">
       <div className="flex md:w-1/2">
-        <Image alt="Product" priority="high" className=" md:h-96 md:w-96" src={obj.img} width={500} height={500} />
+        <Image alt="Product" priority="high" className=" md:h-96 md:w-96" src={img} width={500} height={500} />
       </div>
       <div className="flex flex-col md:w-1/2 gap-5">
-        <label htmlFor="" className=" font-bold text-3xl">{obj.name}</label>
-        <label htmlFor="" className="">{obj.desc}</label>
-        <label htmlFor="" className=" text-2xl">₹{obj.price}</label>
+        <label htmlFor="" className=" font-bold text-3xl">{name}</label>
+        <label htmlFor="" className="">{desc}</label>
+        <label htmlFor="" className=" text-2xl">₹{price}</label>
         <span>
           {sharedValues.value1 ? <>
             <button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mr-4" onClick={buy}>Buy Now</button>
@@ -78,9 +85,12 @@ export default function Detail({ data }) {
 
 export async function getServerSideProps(context) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(`${API_URL}/api/getproducts`);
-  const data = await res.json();
+  const product = await fetch(`${API_URL}/api/getProducts`)
+  const data = await product.json()
+
+
   return {
-    props: { data }
+      props: { data }
   }
+
 }
