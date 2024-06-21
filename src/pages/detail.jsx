@@ -8,7 +8,7 @@ import Link from 'next/link'
 import Head from "next/head";
 
 
-export default function detail({ data }) {
+export default function Detail({ data }) {
   let router = useRouter()
   const { sharedValues } = useContext(AppContext);
   let obj;

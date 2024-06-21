@@ -9,7 +9,7 @@ import AppContext from '../context/AppContext';
 import Head from 'next/head';
 
 
-const login = ({ users, passwords, router }) => {
+const Login = ({ users, passwords, router }) => {
   const { setSharedValues } = useContext(AppContext);
   function get({ users, passwords, router }) {
     let user = document.getElementById("user").value
@@ -58,7 +58,7 @@ const login = ({ users, passwords, router }) => {
   )
 }
 
-export default withRouter(login)
+export default withRouter(Login)
 
 export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {

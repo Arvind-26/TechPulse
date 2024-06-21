@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import Head from 'next/head';
 import React from 'react';
 
-const addtocart = ({ data }) => {
+const Addtocart = ({ data }) => {
     let router = useRouter()
     const { sharedValues } = useContext(AppContext);
     let obj
@@ -98,7 +98,7 @@ const addtocart = ({ data }) => {
     </>)
 }
 
-export default addtocart
+export default Addtocart
 
 export async function getServerSideProps(context) {
     const product = await fetch('http://localhost:3000/api/addcart')

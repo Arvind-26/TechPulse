@@ -12,7 +12,7 @@ function logout() {
 }
 
 
-const profile = ({ users }) => {
+const Profile = ({ users }) => {
   const { sharedValues } = useContext(AppContext);
   var fname;
   var lname;
@@ -70,7 +70,7 @@ const profile = ({ users }) => {
   )
 }
 
-export default profile
+export default Profile
 
 export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
