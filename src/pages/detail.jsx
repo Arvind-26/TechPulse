@@ -28,7 +28,7 @@ export default function Detail({ data }) {
         ]
       }
     ]
-    await fetch('http://localhost:3000/api/addcart', {
+    await fetch('https://innovate-tech-hmigrifqf-arvinds-projects-cbb943f6.vercel.app/api/addcart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -48,9 +48,9 @@ export default function Detail({ data }) {
   }
 
   return (<>
-  <Head>
-        <title>Product</title>
-      </Head>
+    <Head>
+      <title>Product</title>
+    </Head>
     <div id='order' className=" hidden flex justify-center items-center text-5xl font-bold p-5">
       ORDER PLACED
     </div>
@@ -63,8 +63,8 @@ export default function Detail({ data }) {
         <label htmlFor="" className="">{obj.desc}</label>
         <label htmlFor="" className=" text-2xl">₹{obj.price}</label>
         <span>
-          {sharedValues.value1 ?<>
-          <button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mr-4" onClick={buy}>Buy Now</button>
+          {sharedValues.value1 ? <>
+            <button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mr-4" onClick={buy}>Buy Now</button>
             <button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></>
             : <Link href={"/login"}><button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></Link>}
         </span>
@@ -76,7 +76,7 @@ export default function Detail({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:3000/api/getproducts`);
+  const res = await fetch(`https://innovate-tech-hmigrifqf-arvinds-projects-cbb943f6.vercel.app/api/getproducts`);
   const data = await res.json();
   return {
     props: { data }

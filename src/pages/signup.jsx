@@ -44,7 +44,7 @@ const Signup = ({ users, router }) => {
           "address": add
         }];
 
-        const res = await fetch('http://localhost:3000/api/addup', {
+        const res = await fetch('https://innovate-tech-hmigrifqf-arvinds-projects-cbb943f6.vercel.app/api/addup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
