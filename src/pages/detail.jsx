@@ -85,7 +85,7 @@ export default function Detail({ data }) {
 
 export async function getServerSideProps(context) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const product = await fetch(`${API_URL}/api/getProducts`)
+  const product = await fetch(`${API_URL}/api/getproducts`)
   const data = await product.json()
 
 
