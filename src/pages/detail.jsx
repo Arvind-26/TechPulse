@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { useRouter } from "next/router"
 import React from 'react'
-import Review from "../components/review"
+import Review from "../components/Review"
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
 import Link from 'next/link'
