@@ -9,7 +9,7 @@ import Head from "next/head";
 
 
 export default function Detail({ data }) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   let router = useRouter()
   const { sharedValues } = useContext(AppContext);
   let obj;
@@ -32,7 +32,7 @@ export default function Detail({ data }) {
       {
         "user": sharedValues.value2,
         "carts": [
-          { "name": obj.name, "photo": obj.img, "price": obj.price }
+          { "name": name, "photo": img, "price": price }
         ]
       }
     ]

@@ -6,7 +6,7 @@ import AppContext from '../context/AppContext';
 
 
 const Review = ({data_get}) => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   let router = useRouter()
   const product_id = router.query
   const { sharedValues } = useContext(AppContext);

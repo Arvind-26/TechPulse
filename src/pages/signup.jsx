@@ -9,7 +9,7 @@ import Head from 'next/head';
 
 
 const Signup = ({ users, router }) => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   const { setSharedValues } = useContext(AppContext);
   async function get({ users, router }) {
     let fname = document.getElementById("fname").value

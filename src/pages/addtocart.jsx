@@ -6,7 +6,7 @@ import Head from 'next/head';
 import React from 'react';
 
 const Addtocart = ({ data }) => {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
     let router = useRouter()
     const { sharedValues } = useContext(AppContext);
     let obj
