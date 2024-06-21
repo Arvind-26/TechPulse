@@ -6,6 +6,7 @@ import Head from 'next/head';
 import React from 'react';
 
 const Addtocart = ({ data }) => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     let router = useRouter()
     const { sharedValues } = useContext(AppContext);
     let obj
@@ -16,7 +17,7 @@ const Addtocart = ({ data }) => {
     });
 
     async function delete_item(index) {
-        await fetch("http://localhost:3000/api/addcart", {
+        await fetch(`${API_URL}/api/addcart`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -101,7 +102,8 @@ const Addtocart = ({ data }) => {
 export default Addtocart
 
 export async function getServerSideProps(context) {
-    const product = await fetch('http://localhost:3000/api/addcart')
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    const product = await fetch(`${API_URL}/api/addcart`)
     const data = await product.json()
 
 

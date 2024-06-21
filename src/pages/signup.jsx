@@ -9,6 +9,7 @@ import Head from 'next/head';
 
 
 const Signup = ({ users, router }) => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { setSharedValues } = useContext(AppContext);
   async function get({ users, router }) {
     let fname = document.getElementById("fname").value
@@ -44,7 +45,7 @@ const Signup = ({ users, router }) => {
           "address": add
         }];
 
-        const res = await fetch('http://localhost:3000/api/addup', {
+        const res = await fetch(`${API_URL}/api/addup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -9,6 +9,7 @@ import Head from "next/head";
 
 
 export default function Detail({ data }) {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   let router = useRouter()
   const { sharedValues } = useContext(AppContext);
   let obj;
@@ -28,7 +29,7 @@ export default function Detail({ data }) {
         ]
       }
     ]
-    await fetch('http://localhost:3000/api/addcart', {
+    await fetch(`${API_URL}/api/addcart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +77,8 @@ export default function Detail({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:3000/api/getproducts`);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(`${API_URL}/api/getproducts`);
   const data = await res.json();
   return {
     props: { data }

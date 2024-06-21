@@ -6,6 +6,7 @@ import AppContext from '../context/AppContext';
 
 
 const Review = ({data_get}) => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   let router = useRouter()
   const product_id = router.query
   const { sharedValues } = useContext(AppContext);
@@ -20,7 +21,7 @@ const Review = ({data_get}) => {
         ]
       }
     ]
-    await fetch('http://localhost:3000/api/addreviews', {
+    await fetch(`${API_URL}/api/addreviews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

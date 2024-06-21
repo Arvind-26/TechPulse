@@ -13,6 +13,7 @@ function logout() {
 
 
 const Profile = ({ users }) => {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const { sharedValues } = useContext(AppContext);
   var fname;
   var lname;
@@ -29,7 +30,7 @@ const Profile = ({ users }) => {
 
 
   async function delete_acc() {
-    await fetch("http://localhost:3000/api/addup", {
+    await fetch(`${API_URL}/api/addup`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
