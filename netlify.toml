@@ -23,7 +23,8 @@
 
 [functions]
   timeout = 30
-  external_node_modules = [
-    "module-one",
-    "module-two"
-  ]
+  [functions.timeout]
+    external_node_modules = [
+      "module-one",
+      "module-two"
+    ]
