@@ -1,7 +1,7 @@
 import Arrow from '../../public/Arrow.jpg'
 import { useRouter } from "next/router"
 import React from 'react';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AppContext from '../context/AppContext';
 
 
@@ -10,6 +10,7 @@ const Review = ({data_get}) => {
   let router = useRouter()
   const product_id = router.query
   const { sharedValues } = useContext(AppContext);
+
 
   async function send() {
     const data = document.getElementById('user_text').value
@@ -28,9 +29,7 @@ const Review = ({data_get}) => {
       },
       body: JSON.stringify(fulldata),
     })
-    await router.push({
-      pathname: '/detail',
-    });
+    router.reload()
   }
   let obj
   data_get.products.forEach(element => {
