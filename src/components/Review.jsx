@@ -32,7 +32,7 @@ const Review = ({data_get}) => {
     router.reload()
   }
   let obj
-  data_get.products.forEach(element => {
+  data_get.forEach(element => {
     if (element._id == product_id.id) {
       obj = element.reviews
     }

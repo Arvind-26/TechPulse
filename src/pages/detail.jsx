@@ -3,7 +3,9 @@ import { useRouter } from "next/router"
 import React from 'react'
 import Review from "../components/Review"
 import { useContext } from 'react';
+import mongoose from "mongoose"
 import AppContext from '../context/AppContext';
+import product from '../models/product'
 import Link from 'next/link'
 import Head from "next/head";
 
@@ -16,15 +18,14 @@ export default function Detail({ data }) {
   const product_id = router.query
   let img, name, price, desc
 
-  let data2 = data.products
-  data2.forEach(element => {
-      if (element._id == product_id.id) {
-          img = element.img
-          name = element.name
-          price = element.price
-          desc = element.desc
+  data.forEach(element => {
+    if (element._id == product_id.id) {
+      img = element.img
+      name = element.name
+      price = element.price
+      desc = element.desc
 
-      }
+    }
   })
 
   async function senddata() {
@@ -84,13 +85,12 @@ export default function Detail({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const product = await fetch(`${API_URL}/api/getproducts`)
-  const data = await product.json()
-
-
-  return {
-      props: { data }
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.Monogodb_uri)
   }
+  let data = await product.find()
+  return {
+    props: { data: JSON.parse(JSON.stringify(data)) }
 
+  }
 }
