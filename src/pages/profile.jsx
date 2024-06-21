@@ -29,7 +29,7 @@ const Profile = ({ users }) => {
 
 
   async function delete_acc() {
-    await fetch("https://innovate-tech-hmigrifqf-arvinds-projects-cbb943f6.vercel.app/api/addup", {
+    await fetch("http://localhost:3000/api/addup", {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

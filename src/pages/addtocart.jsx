@@ -16,7 +16,7 @@ const Addtocart = ({ data }) => {
     });
 
     async function delete_item(index) {
-        await fetch("https://innovate-tech-hmigrifqf-arvinds-projects-cbb943f6.vercel.app/api/addcart", {
+        await fetch("http://localhost:3000/api/addcart", {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ const Addtocart = ({ data }) => {
 export default Addtocart
 
 export async function getServerSideProps(context) {
-    const product = await fetch('https://innovate-tech-hmigrifqf-arvinds-projects-cbb943f6.vercel.app//addcart')
+    const product = await fetch('http://localhost:3000/api/addcart')
     const data = await product.json()
 
 

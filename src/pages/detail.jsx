@@ -28,7 +28,7 @@ export default function Detail({ data }) {
         ]
       }
     ]
-    await fetch('https://innovate-tech-hmigrifqf-arvinds-projects-cbb943f6.vercel.app/api/addcart', {
+    await fetch('http://localhost:3000/api/addcart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function Detail({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`https://innovate-tech-hmigrifqf-arvinds-projects-cbb943f6.vercel.app/api/getproducts`);
+  const res = await fetch(`http://localhost:3000/api/getproducts`);
   const data = await res.json();
   return {
     props: { data }
