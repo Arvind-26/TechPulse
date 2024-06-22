@@ -29,6 +29,8 @@ export default function Detail({ data }) {
   })
 
   async function senddata() {
+    
+    document.getElementById("addincart").disabled = true;
     var fulldata = [
       {
         "user": sharedValues.value2,
@@ -74,7 +76,7 @@ export default function Detail({ data }) {
         <span>
           {sharedValues.value1 ? <>
             <button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mr-4" onClick={buy}>Buy Now</button>
-            <button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></>
+            <button id="addincart" className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></>
             : <Link href={"/login"}><button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></Link>}
         </span>
       </div>

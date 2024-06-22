@@ -12,6 +12,7 @@ const Signup = ({ users, router }) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   const { setSharedValues } = useContext(AppContext);
   async function get({ users, router }) {
+    document.getElementById("gett").disabled = true;
     let fname = document.getElementById("fname").value
     let lname = document.getElementById("lname").value
     let user = document.getElementById("user").value
@@ -102,7 +103,7 @@ const Signup = ({ users, router }) => {
       <label htmlFor="" id='warning' className=' hidden text-red-900 text-xl'>! Fill all Fields</label>
       <label htmlFor="" id='warningpass' className=' hidden text-red-900 text-xl'>! Passwords do not match</label>
       <label htmlFor="" id='exists' className=' hidden text-red-900 text-xl'>! This username already exists</label>
-      <button className=" text-white font-bold bg-[#d30a03] rounded-2xl py-1 px-5 text-xl m-4" onClick={() => get({ users, router })}>Signup</button>
+      <button id='gett' className=" text-white font-bold bg-[#d30a03] rounded-2xl py-1 px-5 text-xl m-4" onClick={() => get({ users, router })}>Signup</button>
       <label className='text-xl my-4 mx-auto'>Already have an account? <Link className='text-[#d30a03]' href={"/login"}>Login</Link></label>
     </main></>
   )

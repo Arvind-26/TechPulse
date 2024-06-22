@@ -14,19 +14,16 @@ const Login = ({ users, passwords, router }) => {
   function get({ users, passwords, router }) {
     let user = document.getElementById("user").value
     let pass = document.getElementById("pass").value
+    console.log(users,passwords,user,pass)
     if (!users.includes(user)) document.getElementById("warning").classList.remove("hidden")
     else if (!passwords.includes(pass)) document.getElementById("warning").classList.remove("hidden")
     else {
-      var digi = users.indexOf(user)
-      if (passwords[digi] != pass) document.getElementById("warning").classList.remove("hidden");
-      else {
         document.getElementById("warning").classList.add("hidden")
         const data = true
         setSharedValues({ value1: data, value2: user });
         router.push({
           pathname: '/',
         });
-      }
     }
   }
   return (<>
