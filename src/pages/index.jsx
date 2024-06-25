@@ -6,8 +6,6 @@ import product from '../models/product'
 import offer from '../models/offer'
 import React, { useEffect } from 'react'
 
-
-
 export default function Innovatetech({ products, offers }) {
   useEffect(() => {
     
@@ -31,7 +29,7 @@ export default function Innovatetech({ products, offers }) {
       <main>
         <div className="p-3 mt-3 flex flex-col items-center text-2xl md:text-3xl font-bold">
           <label className="">Offers Today</label>
-          <Image id="banner" alt="Product" className="h-96 w-full mt-2 mb-10 " src={"data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="} width={100} height={100} />
+          <Image id="banner" alt="Product" className="bannerslide h-96 w-full mt-2 mb-10 " src={"data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA="} width={100} height={100} />
         </div>
 
         <div id="product" className="m-3">

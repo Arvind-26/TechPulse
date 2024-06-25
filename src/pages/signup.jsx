@@ -2,16 +2,18 @@ import Link from 'next/link'
 import up from '../models/up'
 import mongoose from "mongoose"
 import { withRouter } from 'next/router';
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
 import Head from 'next/head';
 
 
 const Signup = ({ users, router }) => {
+  const [loading, setLoading] = useState(false)
   const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   const { setSharedValues } = useContext(AppContext);
   async function get({ users, router }) {
+    setLoading(true)
     document.getElementById("gett").disabled = true;
     let fname = document.getElementById("fname").value
     let lname = document.getElementById("lname").value
@@ -54,7 +56,7 @@ const Signup = ({ users, router }) => {
           body: JSON.stringify(j),
         })
         const data = true
-        
+
         setSharedValues({ value1: data, value2: user });
         router.push({
           pathname: '/',
@@ -66,8 +68,8 @@ const Signup = ({ users, router }) => {
 
   return (<>
     <Head>
-        <title>Signup</title>
-      </Head>
+      <title>Signup</title>
+    </Head>
     <main className="flex flex-col md:py-16 px-10 md:px-24 items-start w-auto m-8 md:my-14 md:mx-60 rounded-xl border-2 border-[#d30a03] gap-6">
       <label className=" text-[#d30a03] text-4xl font-bold m-5">Signup</label>
       <div className='md:px-8 flex flex-col w-full gap-6'>
@@ -103,7 +105,16 @@ const Signup = ({ users, router }) => {
       <label htmlFor="" id='warning' className=' hidden text-red-900 text-xl'>! Fill all Fields</label>
       <label htmlFor="" id='warningpass' className=' hidden text-red-900 text-xl'>! Passwords do not match</label>
       <label htmlFor="" id='exists' className=' hidden text-red-900 text-xl'>! This username already exists</label>
+      {!loading?
       <button id='gett' className=" text-white font-bold bg-[#d30a03] rounded-2xl py-1 px-5 text-xl m-4" onClick={() => get({ users, router })}>Signup</button>
+      :<div
+        className="m-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]"
+        role="status">
+        <span
+          class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+        >Loading...</span
+        >
+      </div>}
       <label className='text-xl my-4 mx-auto'>Already have an account? <Link className='text-[#d30a03]' href={"/login"}>Login</Link></label>
     </main></>
   )

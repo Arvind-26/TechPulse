@@ -1,8 +1,7 @@
 import Image from "next/image"
 import { useRouter } from "next/router"
-import React from 'react'
 import Review from "../components/Review"
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import mongoose from "mongoose"
 import AppContext from '../context/AppContext';
 import product from '../models/product'
@@ -11,6 +10,7 @@ import Head from "next/head";
 
 
 export default function Detail({ data }) {
+  const [loading, setLoading] = useState(false)
   const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   let router = useRouter()
   const { sharedValues } = useContext(AppContext);
@@ -29,7 +29,7 @@ export default function Detail({ data }) {
   })
 
   async function senddata() {
-    
+    setLoading(true)
     document.getElementById("addincart").disabled = true;
     var fulldata = [
       {
@@ -73,11 +73,19 @@ export default function Detail({ data }) {
         <label htmlFor="" className=" font-bold text-3xl">{name}</label>
         <label htmlFor="" className="">{desc}</label>
         <label htmlFor="" className=" text-2xl">₹{price}</label>
-        <span>
+        <span className="flex flex-col md:flex-row md:items-center">
           {sharedValues.value1 ? <>
-            <button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mr-4" onClick={buy}>Buy Now</button>
-            <button id="addincart" className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></>
-            : <Link href={"/login"}><button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></Link>}
+            <button className=" text-white bg-[#d30a03] w-32 rounded-2xl py-1 px-5 text-xl mr-4" onClick={buy}>Buy Now</button>
+            {!loading?<button id="addincart" className=" text-white w-44 bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button>:
+            <div
+            className="mt-2 ml-2 md:mt-0 md:ml-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]"
+            role="status">
+            <span
+              class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+            >Loading...</span
+            >
+          </div>}</>
+          : <Link href={"/login"}><button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></Link>}
         </span>
       </div>
     </main>

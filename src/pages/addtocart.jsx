@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AppContext from '../context/AppContext';
 import Image from 'next/image'
 import { useRouter } from "next/router"
@@ -6,7 +6,8 @@ import Head from 'next/head';
 import React from 'react';
 
 const Addtocart = ({ data }) => {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || '' ;
+  const [loading, setLoading] = useState()
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
     let router = useRouter()
     const { sharedValues } = useContext(AppContext);
     let obj
@@ -17,6 +18,15 @@ const Addtocart = ({ data }) => {
     });
 
     async function delete_item(index) {
+        // let html = `<div className="flex justify-center items-center">
+        //                             <div className="flex items-center justify-center space-x-1 animate-bounce">
+        //                                 <div className="w-2 h-2 bg-black rounded-full"></div>
+        //                                 <div className="w-2 h-2 bg-black rounded-full"></div>
+        //                                 <div className="w-2 h-2 bg-black rounded-full"></div>
+        //                                 <div className="w-2 h-2 bg-black rounded-full"></div>
+        //                             </div>
+        //                         </div>`
+        // document.getElementById('load_remove' + index).innerHTML = html
         await fetch(`${API_URL}/api/addcart`, {
             method: 'DELETE',
             headers: {
@@ -78,7 +88,10 @@ const Addtocart = ({ data }) => {
                             <Image alt="Product" className=" h-28 w-28" src={item.photo} width={100} height={100} />
                             <div onMouseOver={cal} className=' flex flex-col items-start md:m-2'>
                                 <label htmlFor="">{item.name}</label>
-                                <button className='font-bold' onClick={() => delete_item(index)}>Remove</button>
+                                <span id={'load_remove' + index}>
+                                    <button className='font-bold' onClick={() => delete_item(index)}>Remove</button>
+                                    
+                                </span>
                             </div>
                         </div>
                         <div className=" h-full md:w-1/2 w-3/5 my-auto flex justify-evenly">

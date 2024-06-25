@@ -1,0 +1,23 @@
+.menubaron {
+    animation-duration: 0.3s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    0% {
+      opacity: 0;
+      translate: 0 -10vh;
+      scale: 100% 1;
+    }
+    
+    100% {
+        opacity: 1;
+        translate: 0 0;
+        scale: 100% 1;
+    }
+  }
+  
+
+  
+
+  
