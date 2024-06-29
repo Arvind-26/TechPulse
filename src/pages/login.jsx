@@ -3,6 +3,7 @@ import Link from 'next/link'
 import mongoose from "mongoose"
 import up from '../models/up'
 import { withRouter } from 'next/router';
+import img from '../../public/favicon.ico'
 import { useContext } from 'react';
 import React from 'react';
 import AppContext from '../context/AppContext';
@@ -29,6 +30,7 @@ const Login = ({ users, passwords, router }) => {
   return (<>
     <Head>
       <title>login</title>
+      <link rel="icon" href={img.src} sizes="any" />
     </Head>
     <main className="flex flex-col md:flex-row w-auto justify-center m-8 md:m-14">
       <div className="  text-[#d30a03] flex flex-col items-center border-2 border-[#d30a03] py-16 px-24 rounded-t-xl md:rounded-t-none md:rounded-l-xl">

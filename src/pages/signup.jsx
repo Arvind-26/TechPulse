@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 import { withRouter } from 'next/router';
 import React, { useState } from 'react'
 import { useContext } from 'react';
+import img from '../../public/favicon.ico'
 import AppContext from '../context/AppContext';
 import Head from 'next/head';
 
@@ -69,6 +70,7 @@ const Signup = ({ users, router }) => {
   return (<>
     <Head>
       <title>Signup</title>
+      <link rel="icon" href={img.src} sizes="any" />
     </Head>
     <main className="flex flex-col md:py-16 px-10 md:px-24 items-start w-auto m-8 md:my-14 md:mx-60 rounded-xl border-2 border-[#d30a03] gap-6">
       <label className=" text-[#d30a03] text-4xl font-bold m-5">Signup</label>

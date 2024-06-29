@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import img from '../../public/favicon.ico'
 import Link from 'next/link'
 import mongoose from "mongoose"
 import product from '../models/product'
@@ -25,6 +26,7 @@ export default function Innovatetech({ products, offers }) {
       <Head>
         <title>InnovateTech</title>
         <meta name="desc" content="company"></meta>
+        <link rel="icon" href={img.src} sizes="any" />
       </Head>
       <main>
         <div className="p-3 mt-3 flex flex-col items-center text-2xl md:text-3xl font-bold">
@@ -35,7 +37,7 @@ export default function Innovatetech({ products, offers }) {
         <div id="product" className="m-3">
           <label htmlFor="" className="flex justify-center text-2xl md:text-3xl font-bold">Explore More InnovateTech Products</label>
           <div>
-            <label className="my-6 font-bold text-xl md:text-2xl">Speakers and Headphones</label>
+            <label className="my-6 font-bold text-xl md:text-2xl">Top Picks</label>
             <div className="gap-3 my-3 p-4 flex border-2 w-fill overflow-x-auto whitespace-nowrap">
               {products.map((item, index) => {
                 if (index > 9) {
@@ -52,7 +54,7 @@ export default function Innovatetech({ products, offers }) {
           </div>
 
           <div className="mt-10">
-            <label htmlFor="" className="my-6 font-bold text-xl md:text-2xl">Smartphones and Tabs</label>
+            <label htmlFor="" className="my-6 font-bold text-xl md:text-2xl">New Added</label>
             <div className="gap-3 my-3 p-4 flex border-2 w-fill overflow-x-auto whitespace-nowrap">
               {products.map((item, index) => {
                 if (index > 9 && index < 20) {
@@ -68,7 +70,7 @@ export default function Innovatetech({ products, offers }) {
             </div>
           </div>
           <div className="mt-10">
-            <label htmlFor="" className="my-6 font-bold text-xl md:text-2xl">Pc and Accessories</label>
+            <label htmlFor="" className="my-6 font-bold text-xl md:text-2xl">Keep Shoping for</label>
             <div className="gap-3 my-3 p-4 flex border-2 w-fill overflow-x-auto whitespace-nowrap">
               {products.map((item, index) => {
                 if (index > 19 && index < 30) {

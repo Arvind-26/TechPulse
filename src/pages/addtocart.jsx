@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import AppContext from '../context/AppContext';
 import Image from 'next/image'
 import { useRouter } from "next/router"
+import img from '../../public/favicon.ico'
 import Head from 'next/head';
 import React from 'react';
 
@@ -67,6 +68,7 @@ const Addtocart = ({ data }) => {
     return (<>
         <Head>
             <title>Cart</title>
+            <link rel="icon" href={img.src} sizes="any" />
         </Head>
         <div id='order' className=" hidden flex justify-center items-center text-5xl font-bold p-5">
             ORDER PLACED

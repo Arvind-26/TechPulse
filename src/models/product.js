@@ -13,5 +13,7 @@ const productSchema = new mongoose.Schema({
     reviews: { type: [reviewSchema], default: [] } 
 });
 
-export default mongoose.models.product || mongoose.model('product', productSchema);
+mongoose.models = {}
+export default mongoose.model("product" , productSchema)
+// export default mongoose.models.product || mongoose.model('product', productSchema);
 

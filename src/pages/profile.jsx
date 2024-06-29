@@ -2,6 +2,7 @@ import React from 'react'
 import mongoose from "mongoose"
 import up from "../models/up"
 import { useContext, useState } from 'react';
+import img from '../../public/favicon.ico'
 import AppContext from '../context/AppContext';
 import Head from 'next/head';
 
@@ -48,6 +49,7 @@ const Profile = ({ users }) => {
   return (<>
     <Head>
       <title>Profile</title>
+      <link rel="icon" href={img.src} sizes="any" />
     </Head>
     <main className="flex flex-col md:py-16 px-10 md:px-24 items-start w-auto m-8 md:my-14 md:mx-60 rounded-xl border-2 border-[#d30a03] gap-6">
       <label className=" text-[#d30a03] text-4xl font-bold m-5">Profile</label>
