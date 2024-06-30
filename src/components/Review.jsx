@@ -3,15 +3,11 @@ import { useRouter } from "next/router"
 import React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../context/AppContext';
-
-
 const Review = ({data_get}) => {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   let router = useRouter()
   const product_id = router.query
   const { sharedValues } = useContext(AppContext);
-
-
   async function send() {
     const data = document.getElementById('user_text').value
     var fulldata = [
@@ -32,13 +28,11 @@ const Review = ({data_get}) => {
     router.reload()
   }
   let obj
-  data_get.products.forEach(element => {
+  data_get.forEach(element => {
     if (element._id == product_id.id) {
       obj = element.reviews
     }
   });
-
-
   return (
     <div className=' max-h-screen px-4 bg-gray-100 overflow-auto'>
       <label className=' text-2xl font-bold p-2'>Reviews</label>
@@ -55,6 +49,4 @@ const Review = ({data_get}) => {
     </div>
   )
 }
-
 export default Review
-

@@ -4,7 +4,6 @@ import Review from "../components/Review"
 import React, { useContext, useState } from 'react';
 import mongoose from "mongoose"
 import AppContext from '../context/AppContext';
-import img from '../../public/favicon.ico'
 import product from '../models/product'
 import Link from 'next/link'
 import Head from "next/head";
@@ -15,18 +14,20 @@ export default function Detail({ data }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   let router = useRouter()
   const { sharedValues } = useContext(AppContext);
+  let obj;
+  const product_id = router.query
   let img, name, price, desc
-
-  data.products.forEach(element => {
+  data.forEach(element => {
+    if (element._id == product_id.id) {
       img = element.img
       name = element.name
       price = element.price
       desc = element.desc
+    }
   })
 
   async function senddata() {
     setLoading(true)
-    document.getElementById("addincart").disabled = true;
     var fulldata = [
       {
         "user": sharedValues.value2,
@@ -46,19 +47,15 @@ export default function Detail({ data }) {
       pathname: '/addtocart',
     });
   }
-
   function buy() {
     setTimeout(() => {
       document.getElementById("order").classList.toggle("hidden")
     }, 5000);
     document.getElementById("order").classList.toggle("hidden")
   }
-
-  return (
-  <>
+  return (<>
     <Head>
       <title>Product</title>
-      <link rel="icon" href={img.src} sizes="any" />
     </Head>
     <div id='order' className=" hidden flex justify-center items-center text-5xl font-bold p-5">
       ORDER PLACED
@@ -91,25 +88,12 @@ export default function Detail({ data }) {
   </>
   )
 }
-
 export async function getServerSideProps(context) {
-  const url = context.req.url
-  let url_arr = url.split("=")
-  let id = url_arr[1]
-  let ful = [{"id" : id}]
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const product = await fetch(`${API_URL}/api/getproducts` ,{
-    method : 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-    'User-agent': 'learning app',
-    },
-    body: JSON.stringify(ful),
-  })
-  const data = await product.json()
-
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.Monogodb_uri)
+  }
+  let data = await product.find()
   return {
-      props: { data }
-    }
+    props: { data: JSON.parse(JSON.stringify(data)) }
+  }
 }
