@@ -46,10 +46,17 @@ export default function Detail({ data }) {
     <Head>
       <title>Product</title>
     </Head>
-    <div id='order' className=" hidden flex justify-center items-center text-5xl font-bold p-5">
-      ORDER PLACED
-    </div>
-    <main className="flex flex-col md:flex-row md:py-10 p-10 md:px-10 w-auto m-8 md:my-14 md:mx-48 rounded-xl border-2 border-[#d30a03] gap-6">
+
+    <main className=" relative flex flex-col md:flex-row md:py-10 p-10 md:px-10 w-auto m-8 md:my-14 md:mx-48 rounded-xl border-2 border-[#d30a03] gap-6">
+      <div id='order' className="hidden absolute w-5/6 bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+        <div className="flex">
+          <div className="py-1"><svg className="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" /></svg></div>
+          <div>
+            <p className="font-bold">Placed</p>
+            <p className="text-sm">Your order is sucessfully placed.</p>
+          </div>
+        </div>
+      </div>
       <div className="flex md:w-1/2">
         <Image alt="Product" priority="high" className=" md:h-96 md:w-96" src={data.img} width={500} height={500} />
       </div>
