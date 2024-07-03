@@ -14,17 +14,6 @@ export default function Detail({ data }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   let router = useRouter()
   const { sharedValues } = useContext(AppContext);
-  let obj;
-  const product_id = router.query
-  let img, name, price, desc
-  data.forEach(element => {
-    if (element._id == product_id.id) {
-      img = element.img
-      name = element.name
-      price = element.price
-      desc = element.desc
-    }
-  })
 
   async function senddata() {
     setLoading(true)
@@ -32,7 +21,7 @@ export default function Detail({ data }) {
       {
         "user": sharedValues.value2,
         "carts": [
-          { "name": name, "photo": img, "price": price }
+          { "name": data.name, "photo": data.img, "price": data.price }
         ]
       }
     ]
@@ -62,37 +51,41 @@ export default function Detail({ data }) {
     </div>
     <main className="flex flex-col md:flex-row md:py-10 p-10 md:px-10 w-auto m-8 md:my-14 md:mx-48 rounded-xl border-2 border-[#d30a03] gap-6">
       <div className="flex md:w-1/2">
-        <Image alt="Product" priority="high" className=" md:h-96 md:w-96" src={img} width={500} height={500} />
+        <Image alt="Product" priority="high" className=" md:h-96 md:w-96" src={data.img} width={500} height={500} />
       </div>
       <div className="flex flex-col md:w-1/2 gap-5">
-        <label htmlFor="" className=" font-bold text-3xl">{name}</label>
-        <label htmlFor="" className="">{desc}</label>
-        <label htmlFor="" className=" text-2xl">₹{price}</label>
+        <label htmlFor="" className=" font-bold text-3xl">{data.name}</label>
+        <label htmlFor="" className="">{data.desc}</label>
+        <label htmlFor="" className=" text-2xl">₹{data.price}</label>
         <span className="flex flex-col md:flex-row md:items-center">
           {sharedValues.value1 ? <>
             <button className=" text-white bg-[#d30a03] w-32 rounded-2xl py-1 px-5 text-xl mr-4" onClick={buy}>Buy Now</button>
-            {!loading?<button id="addincart" className=" text-white w-44 bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button>:
-            <div
-            className="mt-2 ml-2 md:mt-0 md:ml-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]"
-            role="status">
-            <span
-              class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-            >Loading...</span
-            >
-          </div>}</>
-          : <Link href={"/login"}><button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button></Link>}
+            {!loading ? <button id="addincart" className=" text-white w-44 bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button> :
+              <div
+                className="mt-2 ml-2 md:mt-0 md:ml-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status">
+                <span
+                  class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                >Loading...</span
+                >
+              </div>}</>
+            : <Link href={"/login"}><button className=" text-white bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" >Add to cart</button></Link>}
         </span>
       </div>
     </main>
-    <Review data_get={data} />
+    <Review data_get={data.reviews} />
   </>
   )
 }
+
 export async function getServerSideProps(context) {
+  const url = context.req.url
+  let url_arr = url.split("=")
+  let id = url_arr[1]
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.Monogodb_uri)
   }
-  let data = await product.find()
+  let data = await product.findById(id)
   return {
     props: { data: JSON.parse(JSON.stringify(data)) }
   }
