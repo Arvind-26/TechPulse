@@ -37,7 +37,7 @@ export default function Detail({ data }) {
     });
   }
   function buy() {
-    setTimeout(() => {
+    setTimeout(() => { 
       document.getElementById("order").classList.toggle("hidden")
     }, 5000);
     document.getElementById("order").classList.toggle("hidden")
