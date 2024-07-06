@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react';
 import AppContext from '../context/AppContext';
 import Image from 'next/image'
+import up from "../models/up";
 import { useRouter } from "next/router"
 import img from '../../public/favicon.ico'
+import mongoose from "mongoose"
 import Head from 'next/head';
 import React from 'react';
 
@@ -12,7 +14,8 @@ const Addtocart = ({ data }) => {
     let router = useRouter()
     const { sharedValues } = useContext(AppContext);
     let obj
-    data.products.forEach(element => {
+    console.log(data)
+    data.forEach(element => {
         if (element.username == sharedValues.value2) {
             obj = element.carts
         }
@@ -123,13 +126,28 @@ const Addtocart = ({ data }) => {
 export default Addtocart
 
 export async function getServerSideProps(context) {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
-    const product = await fetch(`${API_URL}/api/addcart`)
-    const data = await product.json()
+    if (!mongoose.connections[0].readyState) {
+        await mongoose.connect(process.env.Monogodb_uri)
+      }
+      let data = await up.find()
+      return {
+        props: { data: JSON.parse(JSON.stringify(data))}
+    
+      }
+    // const { sharedValues } = useContext(AppContext);
+    // const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    // const product = await fetch(`${API_URL}/api/addcart`, {
+    //     method: 'PUT',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({"user":sharedValues.value2})
+    // })
+    // const data = await product.json()
 
 
-    return {
-        props: { data }
-    }
+    // return {
+    //     props: { data }
+    // }
 
 }
