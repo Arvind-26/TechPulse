@@ -38,7 +38,7 @@ const Footer = () => {
             </div>
             <div className="md:border-l-2 md:border-t-0 border-t-2 border-white w-fill p-4">
                 <label id='about' className="text-[#d30a03] text-2xl font-bold">About</label><br />
-                <label>Welcome to InnovateTech, your premier destination for cutting-edge tech products. We pride ourselves on offering the latest innovations in technology, serving customers worldwide. With a commitment to quality and excellence, InnovateTech ensures you stay ahead in the fast-paced tech world. Discover the future with us today!</label>
+                <label>Welcome to TechPulse, your premier destination for cutting-edge tech products. We pride ourselves on offering the latest innovations in technology, serving customers worldwide. With a commitment to quality and excellence, TechPulse ensures you stay ahead in the fast-paced tech world. Discover the future with us today!</label>
             </div>
         </footer>
     )

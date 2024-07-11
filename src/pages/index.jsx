@@ -7,7 +7,7 @@ import product from '../models/product'
 import offer from '../models/offer'
 import React, { useEffect } from 'react'
 
-export default function Innovatetech({ products, offers }) {
+export default function Techpulse({ products, offers }) {
   useEffect(() => {
     
     let i = 0
@@ -24,7 +24,7 @@ export default function Innovatetech({ products, offers }) {
   return (
     <div>
       <Head>
-        <title>InnovateTech</title>
+        <title>TechPulse</title>
         <meta name="desc" content="company"></meta>
         <link rel="icon" href={img.src} sizes="any" />
       </Head>
@@ -35,7 +35,7 @@ export default function Innovatetech({ products, offers }) {
         </div>
 
         <div id="product" className="m-3">
-          <label htmlFor="" className="flex justify-center text-2xl md:text-3xl font-bold">Explore More InnovateTech Products</label>
+          <label htmlFor="" className="flex justify-center text-2xl md:text-3xl font-bold">Explore More TechPulse Products</label>
           <div>
             <label className="my-6 font-bold text-xl md:text-2xl">Top Picks</label>
             <div className="gap-3 my-3 p-4 flex border-2 w-fill overflow-x-auto whitespace-nowrap">

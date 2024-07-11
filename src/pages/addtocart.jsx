@@ -22,15 +22,6 @@ const Addtocart = ({ data }) => {
     });
 
     async function delete_item(index) {
-        // let html = `<div className="flex justify-center items-center">
-        //                             <div className="flex items-center justify-center space-x-1 animate-bounce">
-        //                                 <div className="w-2 h-2 bg-black rounded-full"></div>
-        //                                 <div className="w-2 h-2 bg-black rounded-full"></div>
-        //                                 <div className="w-2 h-2 bg-black rounded-full"></div>
-        //                                 <div className="w-2 h-2 bg-black rounded-full"></div>
-        //                             </div>
-        //                         </div>`
-        // document.getElementById('load_remove' + index).innerHTML = html
         await fetch(`${API_URL}/api/addcart`, {
             method: 'DELETE',
             headers: {

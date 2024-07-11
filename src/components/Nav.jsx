@@ -17,8 +17,8 @@ const Nav = () => {
     return (
         <nav className="flex justify-between sticky top-0 z-10 w-full shadow-xl items-center p-2 px-6 text-xl bg-white">
             <div className="flex p-1">
-                <span className="text-3xl">Innovate</span>
-                <span className="text-[#d30a03] font-bold text-3xl">Tech</span>
+                <span className="text-3xl">Tech</span>
+                <span className="text-[#d30a03] font-bold text-3xl">Pulse</span>
                 <ul className="md:flex gap-6 ml-10 hidden items-center">
                     <Link href={'/'}><li className=" hover:underline">Home</li></Link>
                     {sharedValues.value1 ? <Link href={'/addtocart'}><li className=" hover:underline">Cart</li></Link> : <></>}
