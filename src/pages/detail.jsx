@@ -22,7 +22,7 @@ export default function Detail({ data }) {
         "user": sharedValues.value2,
         "carts": [
           { "name": data.name, "photo": data.img, "price": data.price }
-        ]
+        ] 
       } 
     ]
     await fetch(`${API_URL}/api/addcart`, {
