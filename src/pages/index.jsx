@@ -5,11 +5,14 @@ import Link from 'next/link'
 import mongoose from "mongoose"
 import product from '../models/product'
 import offer from '../models/offer'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 
 export default function Techpulse({ products, offers }) {
   const [index, setIndex] = useState(0)
   const [search, setSearch] = useState("")
+  const headingRef = useRef()
 
   function infocus() {
     document.getElementById('search').classList.remove('hidden')
@@ -33,6 +36,29 @@ export default function Techpulse({ products, offers }) {
     return () => clearInterval(interval);
   }, [index])
 
+  const tl = gsap.timeline()
+
+  useGSAP(() => {
+    gsap.from(".headingdiv .first", {
+      x: -500,
+      duration: 1,
+      stagger: -0.3,
+      opacity: 0,
+      delay: 0.3
+    })
+    gsap.from(".headingdiv .second", {
+      x: 500,
+      duration: 1,
+      stagger: 0.3,
+      opacity: 0
+    })
+    tl.from("main",{
+      opacity:0,
+      duration:1
+    })
+  })
+
+
   return (
     <div>
       <Head>
@@ -41,7 +67,17 @@ export default function Techpulse({ products, offers }) {
         <link rel="icon" href={img.src} sizes="any" />
       </Head>
       <main>
-
+        <div ref={headingRef} className='headingdiv overflow-x-hidden overflow-y-hidden md:text-8xl text-5xl font-extrabold text-center m-4' >
+          <span class='first inline-block'>T</span>
+          <span class="first inline-block">e</span>
+          <span class="first inline-block">c</span>
+          <span class="first inline-block">h</span>
+          <span class="second text-red-600 inline-block">P</span>
+          <span class="second text-red-600 inline-block">u</span>
+          <span class="second text-red-600 inline-block">l</span>
+          <span class="second text-red-600 inline-block">s</span>
+          <span class="second text-red-600 inline-block">e</span>
+        </div>
         <div>
           <div className="flex flex-col p-2 pt-6 m-h-screen">
             <div className="bg-white items-center justify-between relative m-auto w-full md:w-2/3 flex rounded-full shadow-2xl p-2" style={{ top: "5px" }}>
@@ -72,7 +108,7 @@ export default function Techpulse({ products, offers }) {
           <label htmlFor="" className="flex justify-center text-2xl md:text-3xl font-bold">Explore More TechPulse Products</label>
           <div>
             <label className="my-6 font-bold text-xl md:text-2xl">Top Picks</label>
-            <div className="gap-3 my-3 p-4 flex border-2 w-fill overflow-x-auto whitespace-nowrap">
+            <div className="products1 gap-3 my-3 p-4 flex border-2 w-fill overflow-x-auto whitespace-nowrap">
               {products.map((item, index) => {
                 if (index > 9) {
                   return null;

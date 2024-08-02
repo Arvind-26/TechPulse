@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
 import '../style/style.css'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 function expand() {
     document.getElementById("menu").classList.toggle("hidden")
@@ -13,6 +15,18 @@ function expand() {
 
 const Nav = () => {
     const { sharedValues } = useContext(AppContext);
+    const tl = gsap.timeline()
+    useGSAP(()=>{
+        tl.from("nav",{
+            y:-50,
+            duration: 0.2
+        })
+        tl.from("nav div span, nav div ul , nav div button, nav > img",{
+            y:-50,
+            duration:0.5,
+            stagger:0.2
+        })
+    })
 
     return (
         <nav className="flex justify-between sticky top-0 z-10 w-full shadow-xl items-center p-2 px-6 text-xl bg-white">
