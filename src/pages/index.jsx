@@ -113,7 +113,7 @@ export default function Techpulse({ products, offers }) {
                 if (index > 9) {
                   return null;
                 }
-                return <Link key={item._id} href={{ pathname: '/detail', query: { id: `${item._id}` } }}><div className="transition transform hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none flex flex-col items-center text-xl min-w-52 w-52 border-2" >
+                return <Link key={item._id} href={{ pathname: '/detail', query: { id: `${item._id}` } }} prefetch={true}><div className="transition transform hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none flex flex-col items-center text-xl min-w-52 w-52 border-2" >
                   <Image alt="Product" className=" h-40 w-40" src={item.img} width={100} height={100} />
                   <span>{item.name}</span>
                   <span>₹{item.price}</span>
@@ -128,7 +128,7 @@ export default function Techpulse({ products, offers }) {
             <div className="gap-3 my-3 p-4 flex border-2 w-fill overflow-x-auto whitespace-nowrap">
               {products.map((item, index) => {
                 if (index > 9 && index < 20) {
-                  return <Link key={item._id} href={{ pathname: '/detail', query: { id: `${item._id}` } }}><div className="transition transform hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none flex flex-col items-center text-xl min-w-52 w-52 border-2">
+                  return <Link key={item._id} href={{ pathname: '/detail', query: { id: `${item._id}` } }} prefetch={true}><div className="transition transform hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none flex flex-col items-center text-xl min-w-52 w-52 border-2">
                     <Image alt="Product" className=" h-40 w-40" src={item.img} width={100} height={100} />
                     <span>{item.name}</span>
                     <span>₹{item.price}</span>
@@ -144,7 +144,7 @@ export default function Techpulse({ products, offers }) {
             <div className="gap-3 my-3 p-4 flex border-2 w-fill overflow-x-auto whitespace-nowrap">
               {products.map((item, index) => {
                 if (index > 19 && index < 30) {
-                  return <Link key={item._id} href={{ pathname: '/detail', query: { id: `${item._id}` } }}><div className="transition transform hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none flex flex-col items-center text-xl min-w-52 w-52 border-2">
+                  return <Link key={item._id} href={{ pathname: '/detail', query: { id: `${item._id}` } }} prefetch={true}><div className="transition transform hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none flex flex-col items-center text-xl min-w-52 w-52 border-2">
                     <Image alt="Product" className=" h-40 w-40" src={item.img} width={100} height={100} />
                     <span>{item.name}</span>
                     <span>₹{item.price}</span>
