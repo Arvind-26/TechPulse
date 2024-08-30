@@ -9,6 +9,11 @@ const handler = async (req, res) => {
         await existingProduct.deleteOne();
         await existingProduct.save();
     }
+    else if(req.method == 'POST'){
+        const {username} = req.body;
+        let singleUser = await up.findOne({"username": username})
+        return res.status(200).json(singleUser)
+    }
     else {
         for (let i = 0; i < req.body.length; i++) {
             let p = new up({

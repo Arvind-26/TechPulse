@@ -7,14 +7,60 @@ import AppContext from '../context/AppContext';
 import product from '../models/product'
 import Link from 'next/link'
 import Head from "next/head";
-
+import Script from "next/script";
 
 export default function Detail({ data }) {
   const [loading, setLoading] = useState(false)
   const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
   let router = useRouter()
+  const [isProcessing, setIsProcessing] = useState(false)
   const { sharedValues } = useContext(AppContext);
-
+  const handlePayment = async () => {
+    setIsProcessing(true);
+    try {
+      var user = await fetch(`${API_URL}/api/addup`, {
+        method: "POST", headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: sharedValues.value2 })
+      });
+      const user_data = await user.json();
+      const response = await fetch(`${API_URL}/api/createOrder`, {
+        method: "POST", headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ amount: data.price * 100 })
+      });
+      if (!response.ok) {
+        throw new Error("Failed to create order");
+      }
+      const adata = await response.json();
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: data.price * 100,
+        currency: "INR",
+        name: "Tech Pulse",
+        description: "Product Purchase",
+        order_id: adata.orderId,
+        handler: function (response) {
+          console.log("Payment Successful", response);
+        },
+        prefill: {
+          name: user_data.firstname + " " + user_data.lastname,
+          email: user_data.email,
+        },
+        theme: {
+          color: "#3399cc"
+        }
+      };
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    } catch (error) {
+      console.error("Error in Payment:", error);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
   async function senddata() {
     setLoading(true)
     var fulldata = [
@@ -22,8 +68,8 @@ export default function Detail({ data }) {
         "user": sharedValues.value2,
         "carts": [
           { "name": data.name, "photo": data.img, "price": data.price }
-        ] 
-      } 
+        ]
+      }
     ]
     await fetch(`${API_URL}/api/addcart`, {
       method: 'POST',
@@ -36,16 +82,11 @@ export default function Detail({ data }) {
       pathname: '/addtocart',
     });
   }
-  function buy() {
-    setTimeout(() => { 
-      document.getElementById("order").classList.toggle("hidden")
-    }, 5000);
-    document.getElementById("order").classList.toggle("hidden")
-  }
   return (<>
     <Head>
       <title>Product</title>
     </Head>
+    <Script src="https://checkout.razorpay.com/v1/checkout.js" />
 
     <main className=" relative flex flex-col md:flex-row md:py-10 p-10 md:px-10 w-auto m-8 md:my-14 md:mx-48 rounded-xl border-2 border-[#d30a03] gap-6">
       <div id='order' className="hidden absolute w-5/6 bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
@@ -66,7 +107,7 @@ export default function Detail({ data }) {
         <label htmlFor="" className=" text-2xl">₹{data.price}</label>
         <span className="flex flex-col md:flex-row md:items-center">
           {sharedValues.value1 ? <>
-            <button className=" text-white bg-[#d30a03] w-32 rounded-2xl py-1 px-5 text-xl mr-4" onClick={buy}>Buy Now</button>
+            <button className=" text-white bg-[#d30a03] w-32 rounded-2xl py-1 px-5 text-xl mr-4" onClick={handlePayment} disabled={isProcessing}>Buy Now</button>
             {!loading ? <button id="addincart" className=" text-white w-44 bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button> :
               <div
                 className="mt-2 ml-2 md:mt-0 md:ml-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]"
