@@ -19,7 +19,7 @@ const Addtocart = ({ data }) => {
         setIsProcessing(true);
         try {
             var user = await fetch(`${API_URL}/api/addup`, {
-                method: "POST", headers: {
+                method: "PUT", headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ username: sharedValues.value2 })
@@ -154,7 +154,15 @@ const Addtocart = ({ data }) => {
                 })}
                 <div className=' flex justify-end mt-2'>
                     <label id="grand_total" htmlFor="" className=' pr-10'>Total: ₹{Amount}</label>
-                    <button className=" text-white bg-black rounded-2xl py-1 px-5 text-xl mr-4" onClick={handlePayment} disabled={isProcessing}>Buy</button>
+                    {!isProcessing ? <button className=" text-white bg-black rounded-2xl py-1 px-5 text-xl mr-4" onClick={handlePayment} disabled={isProcessing}>Buy</button> :
+                        <div
+                            className="mt-2 ml-2 md:mt-0 md:ml-4 inline-block h-8 w-8 mx-10 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                            role="status">
+                            <span
+                                class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                            >Loading...</span
+                            >
+                        </div>}
                 </div>
             </div>
         </main>

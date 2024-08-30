@@ -19,7 +19,7 @@ export default function Detail({ data }) {
     setIsProcessing(true);
     try {
       var user = await fetch(`${API_URL}/api/addup`, {
-        method: "POST", headers: {
+        method: "PUT", headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ username: sharedValues.value2 })
@@ -107,7 +107,15 @@ export default function Detail({ data }) {
         <label htmlFor="" className=" text-2xl">₹{data.price}</label>
         <span className="flex flex-col md:flex-row md:items-center">
           {sharedValues.value1 ? <>
-            <button className=" text-white bg-[#d30a03] w-32 rounded-2xl py-1 px-5 text-xl mr-4" onClick={handlePayment} disabled={isProcessing}>Buy Now</button>
+            {!isProcessing ? <button className=" text-white bg-[#d30a03] w-32 rounded-2xl py-1 px-5 text-xl mr-4" onClick={handlePayment} disabled={isProcessing}>Buy Now</button> :
+              <div
+                className="mt-2 ml-2 md:mt-0 md:ml-4 inline-block h-8 w-8 mx-10 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status">
+                <span
+                  class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                >Loading...</span
+                >
+              </div>}
             {!loading ? <button id="addincart" className=" text-white w-44 bg-[#d30a03] rounded-2xl py-1 px-5 text-xl mt-2 md:mt-0" onClick={senddata}>Add to cart</button> :
               <div
                 className="mt-2 ml-2 md:mt-0 md:ml-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-danger motion-reduce:animate-[spin_1.5s_linear_infinite]"

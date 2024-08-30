@@ -9,7 +9,7 @@ const handler = async (req, res) => {
         await existingProduct.deleteOne();
         await existingProduct.save();
     }
-    else if(req.method == 'POST'){
+    else if(req.method == 'PUT'){
         const {username} = req.body;
         let singleUser = await up.findOne({"username": username})
         return res.status(200).json(singleUser)
