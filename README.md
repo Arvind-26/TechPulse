@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TechPulse
 
-## Getting Started
+TechPulse is a dynamic e-commerce platform built with Next.js, offering users a seamless shopping experience. The application allows customers to browse products, add them to their cart, and securely purchase them, all within a clean and user-friendly interface.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- *Product Browsing:* Explore a variety of products with detailed descriptions.
+- *Cart Management:* Easily add, remove, and view products in your shopping cart.
+- *Order Processing:* Complete purchases with online payment.
+- *Responsive Design:* Mobile-friendly and fully responsive for all screen sizes.
+  
+## Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- *Frontend:* Next.js, React, TailWindCSS/CSS
+- *Backend:* Node.js
+- *Database:* MongoDB
+- *Payment Integration:* Razorpay
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
+    
+    git clone https://github.com/Arvind-26/techPulse.git
+    
 
-## Learn More
+2. Navigate to the project directory:
+    
+    cd techpulse
+    
 
-To learn more about Next.js, take a look at the following resources:
+3. Install dependencies:
+    
+    npm install
+    
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Set up your environment variables by creating a .env.local file:
+    
+    MONGODB_URI=your_mongo_db_uri
+    RAZORPAY_KEY_ID=your_razorpay_key_id
+    RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+    NEXT_PUBLIC_RAZORPAY_KEY_ID=your_razorpay_key_id
+    
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Run the development server:
+    
+    npm run dev
+    
 
-## Deploy on Vercel
+6. Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 7. Or you can visit:- https://techpulse-a.netlify.app/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request.
